@@ -1,4 +1,4 @@
-import sharp from "sharp";
+﻿import sharp from "sharp";
 import { resolve } from "node:path";
 
 const width = 1200;
@@ -24,7 +24,7 @@ const textSvg = `
     .subtitle { font: 700 36px 'Arial', sans-serif; fill: #f8f1f1; }
     .body { font: 500 31px 'Arial', sans-serif; fill: #e8d6d6; }
   </style>
-  <text x="70" y="270" class="subtitle">NEADH IEMA</text>
+  <text x="70" y="235" class="subtitle">NEADH IEMA</text>
   <text x="70" y="355" class="title">Bullying e racismo</text>
   <text x="70" y="430" class="title">não são brincadeira.</text>
   <text x="70" y="510" class="body">Canal de conscientização e denúncia escolar</text>
@@ -36,10 +36,13 @@ const iemaLogo = resolve("assets/images/iema.png");
 const outPng = resolve("assets/images/og-cover.png");
 const outWebp = resolve("assets/images/og-cover.webp");
 
+const neadhLogoBuffer = await sharp(neadhLogo).resize({ width: 140 }).png().toBuffer();
+const iemaLogoBuffer = await sharp(iemaLogo).resize({ width: 235 }).png().toBuffer();
+
 const image = sharp(Buffer.from(bgSvg))
   .composite([
-    { input: neadhLogo, left: 65, top: 56, blend: "over" },
-    { input: iemaLogo, left: 250, top: 98, blend: "over" },
+    { input: neadhLogoBuffer, left: 70, top: 60, blend: "over" },
+    { input: iemaLogoBuffer, left: 230, top: 92, blend: "over" },
     { input: Buffer.from(textSvg), left: 0, top: 0, blend: "over" },
   ])
   .resize(width, height);
