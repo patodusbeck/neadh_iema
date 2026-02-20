@@ -76,8 +76,12 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === "GET") {
-      if (!ADMIN_PANEL_KEY || getAdminKey(req) !== ADMIN_PANEL_KEY) {
-        return res.status(401).json({ error: "Nao autorizado." });
+      if (!ADMIN_PANEL_KEY) {
+        return res.status(500).json({ error: "ADMIN_PANEL_KEY nao configurada no servidor." });
+      }
+
+      if (getAdminKey(req) !== ADMIN_PANEL_KEY) {
+        return res.status(401).json({ error: "Chave administrativa invalida." });
       }
 
       const limitParam = Number(req.query?.limit || 100);

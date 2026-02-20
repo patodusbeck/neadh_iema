@@ -1,4 +1,4 @@
-const CACHE_NAME = "neadh-admin-v1";
+﻿const CACHE_NAME = "neadh-admin-v2";
 const STATIC_ASSETS = [
   "/admin.html",
   "/admin.css",
@@ -32,10 +32,11 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (url.pathname.startsWith("/api/")) {
-    // API deve ser sempre online e atual.
+    // API sempre em rede para dados atualizados.
     return;
   }
 
+  // Navegação do painel: tenta rede primeiro, fallback para cache.
   if (url.pathname === "/admin.html" || event.request.mode === "navigate") {
     event.respondWith(
       fetch(event.request)
@@ -49,14 +50,18 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Stale-while-revalidate para assets estáticos.
   event.respondWith(
     caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request).then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-        return response;
-      });
+      const networkFetch = fetch(event.request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => cached);
+
+      return cached || networkFetch;
     })
   );
 });

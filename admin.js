@@ -1,4 +1,4 @@
-const adminKeyInput = document.getElementById("adminKey");
+﻿const adminKeyInput = document.getElementById("adminKey");
 const loadButton = document.getElementById("loadReports");
 const refreshButton = document.getElementById("refreshReports");
 const installButton = document.getElementById("installApp");
@@ -8,6 +8,12 @@ const reportsList = document.getElementById("reportsList");
 
 let adminKey = "";
 let deferredInstallPrompt = null;
+
+const storedKey = window.localStorage.getItem("admin_panel_key");
+if (storedKey && adminKeyInput) {
+  adminKey = storedKey;
+  adminKeyInput.value = storedKey;
+}
 
 function formatDate(value) {
   const date = new Date(value);
@@ -63,11 +69,12 @@ async function fetchReports() {
   try {
     const response = await fetch("/api/reports?limit=200", {
       headers: { "x-admin-key": adminKey },
+      cache: "no-store",
     });
 
     const data = await response.json();
     if (!response.ok) {
-      throw new Error(data?.error || "Falha ao carregar denúncias.");
+      throw new Error(data?.error || `Falha ao carregar denúncias (HTTP ${response.status}).`);
     }
 
     authMessage.textContent = "Painel carregado com sucesso.";
@@ -85,6 +92,7 @@ async function fetchReports() {
 
 loadButton.addEventListener("click", () => {
   adminKey = adminKeyInput.value.trim();
+  window.localStorage.setItem("admin_panel_key", adminKey);
   fetchReports();
 });
 
