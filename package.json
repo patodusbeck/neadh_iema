@@ -1,0 +1,15 @@
+{
+  "name": "neadh_iema",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plataforma NEADH IEMA com conscientização e denúncia escolar.",
+  "scripts": {
+    "optimize:images": "node scripts/optimize-images.mjs"
+  },
+  "dependencies": {
+    "mongodb": "^6.16.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.2"
+  }
+}

@@ -1,0 +1,159 @@
+:root {
+  --bg: #f3ecec;
+  --ink: #2a1719;
+  --primary: #4d2326;
+  --line: #d8c8c8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(180deg, #f7f2f2 0%, #ece2e2 100%);
+}
+
+.panel {
+  width: min(1100px, 92%);
+  margin: 1.2rem auto 2rem;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.55rem;
+}
+
+.panel-head a {
+  color: var(--primary);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.auth-box,
+.toolbar {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  padding: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+.auth-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.35rem;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #c7b1b1;
+  border-radius: 0.45rem;
+  padding: 0.62rem 0.7rem;
+}
+
+button {
+  border: 0;
+  border-radius: 0.45rem;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  padding: 0.62rem 0.9rem;
+  font-weight: 700;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#authMessage {
+  min-height: 1.3rem;
+  margin: 0.45rem 0 0;
+  color: var(--primary);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#summary {
+  margin: 0;
+  font-weight: 600;
+}
+
+.reports-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.report-card {
+  background: #fff;
+  border: 1px solid #dac7c7;
+  border-left: 5px solid var(--primary);
+  border-radius: 0.7rem;
+  padding: 0.9rem;
+}
+
+.report-card h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+}
+
+.meta {
+  color: #5e3a3d;
+  font-size: 0.92rem;
+  margin: 0 0 0.45rem;
+}
+
+.desc {
+  margin: 0.35rem 0 0;
+  white-space: pre-wrap;
+}
+
+.empty {
+  background: #fff;
+  border: 1px dashed #ccb4b4;
+  border-radius: 0.7rem;
+  padding: 1rem;
+}
+
+@media (max-width: 720px) {
+  .panel-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .auth-row {
+    flex-direction: column;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

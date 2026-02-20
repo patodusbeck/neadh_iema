@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEADH | IP. CAROLINA</title>
+  <title>NEADH | Conscientização e Denúncia</title>
   <meta name="description" content="Plataforma do NEADH para conscientização sobre bullying escolar, com foco no combate ao racismo e na promoção dos direitos humanos.">
+  <meta name="keywords" content="bullying escolar, racismo, denúncia escolar, direitos humanos, neadh, iema">
   <meta name="robots" content="index, follow">
   <meta name="author" content="NEADH IEMA">
   <meta name="theme-color" content="#4d2326">
-  <link rel="canonical" href="https://iemaneadh.vercel.app/">
+  <link rel="canonical" href="https://neadhiema.vercel.app/">
 
   <meta property="og:locale" content="pt_BR">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NEADH IEMA">
   <meta property="og:title" content="NEADH | Conscientização e Denúncia">
   <meta property="og:description" content="Canal de conscientização e denúncia sobre bullying escolar, com foco no enfrentamento ao racismo.">
-  <meta property="og:url" content="https://iemaneadh.vercel.app/">
-  <meta property="og:image" content="https://iemaneadh.vercel.app/assets/images/og-cover.png">
-  <meta property="og:image:secure_url" content="https://iemaneadh.vercel.app/assets/images/og-cover.png">
+  <meta property="og:url" content="https://neadhiema.vercel.app/">
+  <meta property="og:image" content="https://neadhiema.vercel.app/assets/images/og-cover.png">
+  <meta property="og:image:secure_url" content="https://neadhiema.vercel.app/assets/images/og-cover.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -26,7 +27,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NEADH | Conscientização e Denúncia">
   <meta name="twitter:description" content="Canal de conscientização e denúncia sobre bullying escolar, com foco no enfrentamento ao racismo.">
-  <meta name="twitter:image" content="https://iemaneadh.vercel.app/assets/images/og-cover.png">
+  <meta name="twitter:image" content="https://neadhiema.vercel.app/assets/images/og-cover.png">
+
   <link rel="icon" type="image/png" href="assets/images/neadh_simbolo.png">
   <link rel="apple-touch-icon" href="assets/images/neadh_simbolo.png">
 
@@ -35,11 +37,12 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "NEADH IEMA",
-      "url": "https://iemaneadh.vercel.app/",
-      "logo": "https://iemaneadh.vercel.app/assets/images/neadh_simbolo.png",
+      "url": "https://neadhiema.vercel.app/",
+      "logo": "https://neadhiema.vercel.app/assets/images/neadh_simbolo.png",
       "sameAs": []
     }
   </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -49,14 +52,22 @@
   <header class="topbar">
     <div class="container topbar-content">
       <a class="brand" href="#inicio" aria-label="Voltar ao início">
-        <img class="logo-neadh" src="assets/images/neadh_simbolo.png" alt="Símbolo do NEADH">
-        <img class="logo-iema" src="assets/images/iema.png" alt="Logo do IEMA">
+        <picture>
+          <source srcset="assets/images/neadh_simbolo.webp" type="image/webp">
+          <img class="logo-neadh" src="assets/images/neadh_simbolo.png" alt="Símbolo do NEADH" width="270" height="255" fetchpriority="high" decoding="async">
+        </picture>
+        <picture>
+          <source srcset="assets/images/iema.webp" type="image/webp">
+          <img class="logo-iema" src="assets/images/iema.png" alt="Logo do IEMA" width="305" height="148" fetchpriority="high" decoding="async">
+        </picture>
       </a>
+
       <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
         <span></span>
         <span></span>
         <span></span>
       </button>
+
       <nav aria-label="Navegação principal">
         <ul class="menu" id="menu-principal">
           <li><a href="#sobre">Sobre nós</a></li>
@@ -70,7 +81,7 @@
   </header>
 
   <main id="inicio">
-    <section class="hero">
+    <section class="hero reveal">
       <div class="container hero-grid">
         <div>
           <p class="eyebrow">NEADH IEMA</p>
@@ -81,7 +92,7 @@
           </p>
           <a class="cta" href="#denuncie">Fazer uma denúncia</a>
         </div>
-        <aside class="hero-card" aria-label="Mensagem de acolhimento">
+        <aside class="hero-card reveal" aria-label="Mensagem de acolhimento">
           <h2>Você não está sozinho.</h2>
           <p>
             Se você sofreu ou presenciou bullying, principalmente casos de racismo,
@@ -91,7 +102,7 @@
       </div>
     </section>
 
-    <section id="sobre" class="section">
+    <section id="sobre" class="section reveal">
       <div class="container">
         <h2>Sobre nós</h2>
         <p>
@@ -102,21 +113,21 @@
       </div>
     </section>
 
-    <section id="acoes" class="section section-alt">
+    <section id="acoes" class="section section-alt reveal">
       <div class="container cards">
-        <article class="card feature-card conscientizacao">
+        <article class="card feature-card conscientizacao reveal">
           <h3>Conscientização</h3>
           <p>
             Campanhas e materiais para reconhecer, prevenir e combater o bullying e o racismo.
           </p>
         </article>
-        <article class="card feature-card acolhimento">
+        <article class="card feature-card acolhimento reveal">
           <h3>Acolhimento</h3>
           <p>
             Escuta e apoio para estudantes e famílias, com orientação e encaminhamento.
           </p>
         </article>
-        <article class="card feature-card formacao">
+        <article class="card feature-card formacao reveal">
           <h3>Formação</h3>
           <p>
             Apoio aos educadores para fortalecer práticas antirracistas e inclusivas.
@@ -125,7 +136,7 @@
       </div>
     </section>
 
-    <section id="tipos" class="section">
+    <section id="tipos" class="section reveal">
       <div class="container">
         <h2>Tipos de bullying</h2>
         <p class="section-intro">
@@ -133,27 +144,27 @@
           rápido e proteger quem foi afetado.
         </p>
         <div class="cards cards-2">
-          <article class="card type-card verbal">
+          <article class="card type-card verbal reveal">
             <h3>Bullying verbal</h3>
             <p>Insultos, apelidos ofensivos, humilhação pública e ameaças.</p>
           </article>
-          <article class="card type-card fisico">
+          <article class="card type-card fisico reveal">
             <h3>Bullying físico</h3>
             <p>Empurrões, tapas, chutes, danos em materiais e intimidação física.</p>
           </article>
-          <article class="card type-card social">
+          <article class="card type-card social reveal">
             <h3>Bullying social</h3>
             <p>Isolamento de colegas, espalhar boatos e exclusão de atividades coletivas.</p>
           </article>
-          <article class="card type-card cyber">
+          <article class="card type-card cyber reveal">
             <h3>Cyberbullying</h3>
             <p>Ofensas em redes sociais, exposição de imagens e ataques por mensagens.</p>
           </article>
-          <article class="card type-card racial">
+          <article class="card type-card racial reveal">
             <h3>Bullying racial</h3>
             <p>Ofensas, piadas e discriminação por cor, etnia, origem ou cultura.</p>
           </article>
-          <article class="card type-card moral">
+          <article class="card type-card moral reveal">
             <h3>Bullying moral</h3>
             <p>Acusações falsas, desrespeito contínuo e ataques à dignidade da pessoa.</p>
           </article>
@@ -161,11 +172,11 @@
       </div>
     </section>
 
-    <section id="sinais" class="section section-alt">
+    <section id="sinais" class="section section-alt reveal">
       <div class="container">
         <h2>Sinais de alerta</h2>
         <div class="warning-grid">
-          <article class="warning-card alert-card estudante">
+          <article class="warning-card alert-card estudante reveal">
             <h3>No estudante</h3>
             <ul>
               <li>Queda repentina no rendimento escolar.</li>
@@ -174,7 +185,7 @@
               <li>Objetos danificados, perda de materiais ou machucados recorrentes.</li>
             </ul>
           </article>
-          <article class="warning-card alert-card ambiente">
+          <article class="warning-card alert-card ambiente reveal">
             <h3>No ambiente escolar</h3>
             <ul>
               <li>Piadas ofensivas naturalizadas em sala ou corredores.</li>
@@ -187,35 +198,35 @@
       </div>
     </section>
 
-    <section id="como-agir" class="section">
+    <section id="como-agir" class="section reveal">
       <div class="container">
         <h2>O que fazer em casos de bullying</h2>
         <div class="steps">
-          <article class="step">
+          <article class="step reveal">
             <h3>1. Interrompa e acolha</h3>
             <p>
               Pare a agressão imediatamente e garanta segurança física e emocional da pessoa afetada.
             </p>
           </article>
-          <article class="step">
+          <article class="step reveal">
             <h3>2. Escute sem culpar</h3>
             <p>
               Escute com respeito e sem julgamento para que a vítima consiga relatar o ocorrido.
             </p>
           </article>
-          <article class="step">
+          <article class="step reveal">
             <h3>3. Registre os fatos</h3>
             <p>
               Anote data, local, envolvidos, testemunhas e evidências (prints, fotos e mensagens).
             </p>
           </article>
-          <article class="step">
+          <article class="step reveal">
             <h3>4. Acione a escola e a família</h3>
             <p>
               Informe coordenação, orientação e responsáveis para criar um plano de proteção.
             </p>
           </article>
-          <article class="step">
+          <article class="step reveal">
             <h3>5. Encaminhe a denúncia</h3>
             <p>
               Use o formulário abaixo para registrar o caso. Em situações graves, procure o Conselho Tutelar
@@ -226,35 +237,71 @@
       </div>
     </section>
 
-    <section id="denuncie" class="section denuncie-section">
+    <section id="denuncie" class="section denuncie-section reveal">
       <div class="container">
         <h2>Denuncie</h2>
-        <p class="section-intro">
-          Preencha o formulário abaixo para relatar uma situação. As informações serão usadas
-          para encaminhamento responsável e proteção das pessoas envolvidas.
-        </p>
-        <form class="report-form" id="reportForm">
-          <label for="nome">Nome (opcional)</label>
-          <input id="nome" name="nome" type="text" placeholder="Digite seu nome">
+        <p class="section-intro">O formulário é dividido em 3 etapas simples para facilitar o registro.</p>
+        <div class="urgent-box" role="note" aria-label="Orientação de urgência">
+          <strong>Atenção:</strong> em caso de risco imediato, procure a direção da escola e as autoridades competentes.
+        </div>
 
-          <label for="contato">Contato (opcional)</label>
-          <input id="contato" name="contato" type="text" placeholder="E-mail ou telefone">
+        <ol class="form-steps" aria-label="Etapas do formulário">
+          <li class="is-active">Tipo</li>
+          <li>Descrição</li>
+          <li>Contato e envio</li>
+        </ol>
 
-          <label for="tipo">Tipo de ocorrência *</label>
-          <select id="tipo" name="tipo" required>
-            <option value="">Selecione</option>
-            <option>Bullying verbal</option>
-            <option>Bullying físico</option>
-            <option>Racismo</option>
-            <option>Cyberbullying</option>
-            <option>Outro</option>
-          </select>
+        <form class="report-form" id="reportForm" novalidate>
+          <fieldset class="form-step is-active" data-step="1">
+            <legend>1. Tipo de ocorrência</legend>
+            <label for="tipo">Tipo de ocorrência *</label>
+            <select id="tipo" name="tipo" required>
+              <option value="">Selecione</option>
+              <option>Bullying verbal</option>
+              <option>Bullying físico</option>
+              <option>Racismo</option>
+              <option>Cyberbullying</option>
+              <option>Outro</option>
+            </select>
+            <div class="step-actions">
+              <button type="button" class="step-next">Próxima etapa</button>
+            </div>
+          </fieldset>
 
-          <label for="descricao">Conte o que aconteceu *</label>
-          <textarea id="descricao" name="descricao" rows="6" required placeholder="Conte o que aconteceu, onde e quando."></textarea>
+          <fieldset class="form-step" data-step="2">
+            <legend>2. Descrição</legend>
+            <label for="descricao">Conte o que aconteceu *</label>
+            <textarea id="descricao" name="descricao" rows="6" required placeholder="Conte o que aconteceu, onde e quando."></textarea>
+            <div class="step-actions">
+              <button type="button" class="step-prev">Voltar</button>
+              <button type="button" class="step-next">Próxima etapa</button>
+            </div>
+          </fieldset>
 
-          <button type="submit">Enviar denúncia</button>
-          <p id="formMessage" role="status" aria-live="polite"></p>
+          <fieldset class="form-step" data-step="3">
+            <legend>3. Contato e envio</legend>
+            <label for="nome">Nome (opcional)</label>
+            <input id="nome" name="nome" type="text" placeholder="Digite seu nome">
+
+            <label for="contato">Contato (opcional)</label>
+            <input id="contato" name="contato" type="text" placeholder="E-mail ou telefone">
+
+            <label class="consent">
+              <input type="checkbox" id="consentimento" name="consentimento" required>
+              Confirmo que as informações são verdadeiras e autorizo o uso para análise institucional do caso.
+            </label>
+
+            <div class="step-actions">
+              <button type="button" class="step-prev">Voltar</button>
+              <button type="submit" id="submitReport">Enviar denúncia</button>
+            </div>
+          </fieldset>
+
+          <p id="formMessage" role="status" aria-live="polite" class="form-feedback"></p>
+          <div id="protocolBox" class="protocol-box" hidden>
+            <p><strong>Registro concluído com sucesso.</strong></p>
+            <p>Número de protocolo: <span id="protocolNumber"></span></p>
+          </div>
         </form>
       </div>
     </section>
@@ -264,42 +311,26 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <div class="footer-logos" aria-label="Logos institucionais">
-          <img class="footer-logo-neadh" src="assets/images/neadh_simbolo.png" alt="Símbolo do NEADH">
-          <img class="footer-logo-iema" src="assets/images/iema.png" alt="Logo do IEMA">
+          <picture>
+            <source srcset="assets/images/neadh_simbolo.webp" type="image/webp">
+            <img class="footer-logo-neadh" src="assets/images/neadh_simbolo.png" alt="Símbolo do NEADH" width="270" height="255" loading="lazy" decoding="async">
+          </picture>
+          <picture>
+            <source srcset="assets/images/iema.webp" type="image/webp">
+            <img class="footer-logo-iema" src="assets/images/iema.png" alt="Logo do IEMA" width="305" height="148" loading="lazy" decoding="async">
+          </picture>
         </div>
         <p class="footer-title">NEADH | Núcleo de Educação Antirracista e em Direitos Humanos</p>
       </div>
       <div class="footer-info">
-        <p><strong>Diretor do NEADH-IEMA Pleno Carolina</strong> Prof. Jucie Cunha</p>
+        <p><strong>Diretor do NEADH-IEMA Pleno Carolina:</strong> Prof. Jucie Cunha</p>
         <p><strong>Atendimento:</strong> Segunda a sexta, horário escolar</p>
         <a href="#denuncie">Ir para o formulário de denúncia</a>
+        <a href="admin.html">Acessar painel do diretor</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    const form = document.getElementById("reportForm");
-    const formMessage = document.getElementById("formMessage");
-    const menuToggle = document.querySelector(".menu-toggle");
-    const menu = document.getElementById("menu-principal");
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      formMessage.textContent = "Denúncia registrada com sucesso. Obrigado por contribuir com uma escola mais segura.";
-      form.reset();
-    });
-
-    menuToggle.addEventListener("click", () => {
-      const isOpen = menu.classList.toggle("is-open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    menu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        menu.classList.remove("is-open");
-        menuToggle.setAttribute("aria-expanded", "false");
-      });
-    });
-  </script>
+  <script src="main.js" defer></script>
 </body>
 </html>
