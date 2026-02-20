@@ -27,6 +27,8 @@
   <meta name="twitter:title" content="NEADH | Conscientização e Denúncia">
   <meta name="twitter:description" content="Canal de conscientização e denúncia sobre bullying escolar, com foco no enfrentamento ao racismo.">
   <meta name="twitter:image" content="https://neadhiema.vercel.app/assets/images/og-cover.png">
+  <link rel="icon" type="image/png" href="assets/images/neadh_simbolo.png">
+  <link rel="apple-touch-icon" href="assets/images/neadh_simbolo.png">
 
   <script type="application/ld+json">
     {
@@ -50,8 +52,13 @@
         <img class="logo-neadh" src="assets/images/neadh_simbolo.png" alt="Símbolo do NEADH">
         <img class="logo-iema" src="assets/images/iema.png" alt="Logo do IEMA">
       </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav aria-label="Navegação principal">
-        <ul class="menu">
+        <ul class="menu" id="menu-principal">
           <li><a href="#sobre">Sobre nós</a></li>
           <li><a href="#acoes">Ações</a></li>
           <li><a href="#tipos">Tipos</a></li>
@@ -273,11 +280,25 @@
   <script>
     const form = document.getElementById("reportForm");
     const formMessage = document.getElementById("formMessage");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const menu = document.getElementById("menu-principal");
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       formMessage.textContent = "Denúncia registrada com sucesso. Obrigado por contribuir com uma escola mais segura.";
       form.reset();
+    });
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menu.classList.toggle("is-open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menu.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
     });
   </script>
 </body>

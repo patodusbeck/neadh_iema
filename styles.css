@@ -75,6 +75,26 @@ body {
   gap: 1rem;
 }
 
+.menu-toggle {
+  display: none;
+  border: 1px solid #c9b0b0;
+  background: #fff5f5;
+  border-radius: 0.45rem;
+  padding: 0.42rem 0.5rem;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--primary);
+}
+
+.menu-toggle span + span {
+  margin-top: 4px;
+}
+
 .menu a {
   color: var(--primary);
   text-decoration: none;
@@ -534,12 +554,40 @@ h2 {
 
 @media (max-width: 640px) {
   .topbar-content {
-    flex-direction: column;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  .topbar nav {
+    width: 100%;
   }
 
   .menu {
-    flex-wrap: wrap;
+    display: none;
+    width: 100%;
+    margin-top: 0.65rem;
+    padding: 0.7rem;
+    flex-direction: column;
+    gap: 0.55rem;
+    border: 1px solid #d8c1c1;
+    border-radius: 0.6rem;
+    background: #fff8f8;
+  }
+
+  .menu.is-open {
+    display: flex;
+  }
+
+  .menu a {
+    display: block;
+    padding: 0.25rem 0;
   }
 
   .logo-neadh {
