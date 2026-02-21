@@ -19,10 +19,10 @@ O projeto usa uma arquitetura simples e eficaz:
 - Deploy recomendado na Vercel.
 
 Fluxo principal:
-1. Usuário preenche denúncia no site (`index.html`).
+1. Usuário preenche denúncia no site (`/`).
 2. `main.js` valida o formulário e envia `POST /api/reports`.
 3. API valida dados e grava no MongoDB com protocolo único.
-4. Diretor acessa `admin.html` e consulta denúncias via `GET /api/reports` com chave administrativa.
+4. Diretor acessa `/admin` e consulta denúncias via `GET /api/reports` com chave administrativa.
 
 ## Stack utilizada
 - HTML5
@@ -36,7 +36,7 @@ Fluxo principal:
 
 ## Funcionalidades implementadas
 
-## Site público (`index.html`)
+## Site público (`/`)
 - Navegação responsiva (menu hamburguer no mobile).
 - Seções educativas sobre tipos de bullying, sinais e condutas.
 - Formulário de denúncia em 3 etapas.
@@ -50,7 +50,7 @@ Fluxo principal:
 - Consentimento obrigatório para envio.
 - Mensagem de retorno e exibição do número de protocolo.
 
-## Painel do diretor (`admin.html`)
+## Painel do diretor (`/admin`)
 - Acesso por chave administrativa (`ADMIN_PANEL_KEY`).
 - Listagem das denúncias mais recentes.
 - Exibição de protocolo, tipo, data, status, nome, contato e descrição.
@@ -176,8 +176,8 @@ Observação:
 2. Configure as variáveis de ambiente.
 3. Faça deploy.
 4. Teste:
-- Envio de denúncia em `index.html`
-- Leitura no painel `admin.html`
+- Envio de denúncia em `/`
+- Leitura no painel `/admin`
 - Instalação do PWA do painel
 
 ## Scripts úteis

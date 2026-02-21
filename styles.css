@@ -26,6 +26,14 @@ body {
   line-height: 1.58;
 }
 
+a,
+button,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
 .container {
   width: min(1100px, 92%);
   margin: 0 auto;

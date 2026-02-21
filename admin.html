@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Painel NEADH | Denúncias</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#4d2326">
@@ -21,10 +21,10 @@
         <img src="assets/images/neadh_simbolo.png" alt="Símbolo do NEADH" width="42" height="40">
         <h1>Painel de Denúncias - NEADH</h1>
       </div>
-      <a href="index.html">Voltar ao site</a>
+      <a href="/">Voltar ao site</a>
     </header>
 
-    <section class="auth-box">
+    <section class="auth-box" id="authBox">
       <label for="adminKey">Chave de acesso do diretor</label>
       <div class="auth-row">
         <input id="adminKey" type="password" placeholder="Digite a chave ADMIN_PANEL_KEY">
@@ -36,11 +36,22 @@
     <section class="toolbar">
       <button id="installApp" hidden>Instalar app</button>
       <button id="refreshReports" disabled>Atualizar lista</button>
+      <button id="changeKey" hidden>Trocar chave</button>
       <p id="summary"></p>
     </section>
 
     <section id="reportsList" class="reports-list"></section>
   </main>
+
+  <section id="detailOverlay" class="detail-overlay is-hidden" aria-hidden="true">
+    <article class="detail-card" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <button id="closeDetail" class="close-detail" type="button" aria-label="Fechar detalhe">Fechar</button>
+      <h2 id="detailTitle"></h2>
+      <p id="detailMeta" class="meta"></p>
+      <p id="detailDesc" class="desc"></p>
+      <p id="detailProtocol" class="meta"></p>
+    </article>
+  </section>
 
   <script src="admin.js" defer></script>
 </body>

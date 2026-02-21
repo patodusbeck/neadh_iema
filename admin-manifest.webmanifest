@@ -3,7 +3,7 @@
   "short_name": "Painel NEADH",
   "description": "Aplicativo instalável para acompanhar denúncias do NEADH.",
   "lang": "pt-BR",
-  "start_url": "/admin.html",
+  "start_url": "/admin",
   "scope": "/",
   "display": "standalone",
   "background_color": "#f3ecec",
