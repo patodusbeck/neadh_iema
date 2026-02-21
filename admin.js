@@ -111,7 +111,6 @@ function renderReports(reports) {
       const tipo = escapeHtml(report.tipo || "Não informado");
       const name = report.nome ? escapeHtml(report.nome) : "Anônimo";
       const contato = report.contato ? escapeHtml(report.contato) : "Não informado";
-      const descricao = escapeHtml(report.descricao || "Sem descrição");
       const protocolo = escapeHtml(report.protocol || "indisponível");
 
       return `
@@ -122,7 +121,7 @@ function renderReports(reports) {
           </p>
           <p class="meta"><strong>Tipo:</strong> ${tipo} <span class="dot">•</span> <strong>Protocolo:</strong> ${protocolo}</p>
           <p class="meta"><strong>Nome:</strong> ${name} | <strong>Contato:</strong> ${contato}</p>
-          <p class="desc">${descricao}</p>
+          <p class="hint">Clique para ver os detalhes completos</p>
         </article>
       `;
     })
