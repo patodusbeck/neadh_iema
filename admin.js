@@ -1,4 +1,4 @@
-﻿const adminKeyInput = document.getElementById("adminKey");
+const adminKeyInput = document.getElementById("adminKey");
 const loadButton = document.getElementById("loadReports");
 const refreshButton = document.getElementById("refreshReports");
 const installButton = document.getElementById("installApp");
@@ -18,6 +18,16 @@ const detailProtocol = document.getElementById("detailProtocol");
 let adminKey = "";
 let deferredInstallPrompt = null;
 let reportsCache = [];
+
+const STATUS_LABELS = {
+  novo: "Novo",
+  em_analise: "Em análise",
+  em_analise_: "Em análise",
+  analisando: "Em análise",
+  concluido: "Concluído",
+  concluído: "Concluído",
+  arquivado: "Arquivado",
+};
 
 const storedKey = window.localStorage.getItem("admin_panel_key");
 if (storedKey && adminKeyInput) {
@@ -40,6 +50,21 @@ function escapeHtml(text) {
     .replaceAll("'", "&#39;");
 }
 
+function normalizeStatus(value) {
+  return String(value || "novo")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "_")
+    .replace(/[^a-z0-9_]/g, "");
+}
+
+function getStatusLabel(value) {
+  const key = normalizeStatus(value);
+  return STATUS_LABELS[key] || "Novo";
+}
+
 function setAuthenticated(isAuthenticated) {
   if (!authBox || !changeKeyButton) return;
   authBox.classList.toggle("is-hidden", isAuthenticated);
@@ -51,7 +76,7 @@ function openDetail(index) {
   if (!report || !detailOverlay) return;
 
   const date = formatDate(report.createdAt);
-  const status = report.status || "novo";
+  const status = getStatusLabel(report.status);
   const nome = report.nome || "Anônimo";
   const contato = report.contato || "Não informado";
 
@@ -81,17 +106,23 @@ function renderReports(reports) {
   reportsList.innerHTML = reportsCache
     .map((report, index) => {
       const date = formatDate(report.createdAt);
-      const status = escapeHtml(report.status || "novo");
+      const status = getStatusLabel(report.status);
+      const statusClass = normalizeStatus(report.status);
       const tipo = escapeHtml(report.tipo || "Não informado");
       const name = report.nome ? escapeHtml(report.nome) : "Anônimo";
       const contato = report.contato ? escapeHtml(report.contato) : "Não informado";
+      const descricao = escapeHtml(report.descricao || "Sem descrição");
+      const protocolo = escapeHtml(report.protocol || "indisponível");
 
       return `
         <article class="report-card" data-index="${index}" tabindex="0" role="button" aria-label="Abrir detalhes da denúncia">
-          <h2>${date} - Status: ${status}</h2>
-          <p class="meta"><strong>Tipo:</strong> ${tipo}</p>
+          <p class="row-top">
+            <span class="when">${date}</span>
+            <span class="status-pill status-${statusClass}">${escapeHtml(status)}</span>
+          </p>
+          <p class="meta"><strong>Tipo:</strong> ${tipo} <span class="dot">•</span> <strong>Protocolo:</strong> ${protocolo}</p>
           <p class="meta"><strong>Nome:</strong> ${name} | <strong>Contato:</strong> ${contato}</p>
-          <p class="desc">${escapeHtml(report.descricao || "Sem descrição")}</p>
+          <p class="desc">${descricao}</p>
         </article>
       `;
     })

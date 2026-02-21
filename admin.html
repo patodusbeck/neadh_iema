@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Painel NEADH | Denúncias</title>
+  <title>Painel NEADH | Den&uacute;ncias</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#4d2326">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,23 +12,26 @@
   <link rel="manifest" href="admin-manifest.webmanifest">
   <link rel="icon" type="image/png" href="assets/images/neadh_simbolo.png">
   <link rel="apple-touch-icon" href="assets/icons/pwa-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css">
 </head>
 <body>
   <main class="panel">
     <header class="panel-head">
       <div class="brand">
-        <img src="assets/images/neadh_simbolo.png" alt="Símbolo do NEADH" width="42" height="40">
-        <h1>Painel de Denúncias - NEADH</h1>
+        <img src="assets/images/neadh_simbolo.png" alt="S&iacute;mbolo do NEADH" width="42" height="40">
+        <h1>Painel de Den&uacute;ncias - NEADH</h1>
       </div>
-      <a href="/">Voltar ao site</a>
+      <a class="back-link" href="/">Voltar ao site</a>
     </header>
 
     <section class="auth-box" id="authBox">
       <label for="adminKey">Chave de acesso do diretor</label>
       <div class="auth-row">
         <input id="adminKey" type="password" placeholder="Digite a chave ADMIN_PANEL_KEY">
-        <button id="loadReports">Carregar denúncias</button>
+        <button id="loadReports">Carregar den&uacute;ncias</button>
       </div>
       <p id="authMessage" role="status" aria-live="polite"></p>
     </section>
