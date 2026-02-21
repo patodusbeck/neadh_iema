@@ -11,7 +11,10 @@ const reportsList = document.getElementById("reportsList");
 const detailOverlay = document.getElementById("detailOverlay");
 const closeDetailButton = document.getElementById("closeDetail");
 const detailTitle = document.getElementById("detailTitle");
-const detailMeta = document.getElementById("detailMeta");
+const detailStatus = document.getElementById("detailStatus");
+const detailType = document.getElementById("detailType");
+const detailName = document.getElementById("detailName");
+const detailContact = document.getElementById("detailContact");
 const detailDesc = document.getElementById("detailDesc");
 const detailProtocol = document.getElementById("detailProtocol");
 
@@ -80,8 +83,11 @@ function openDetail(index) {
   const nome = report.nome || "Anônimo";
   const contato = report.contato || "Não informado";
 
-  detailTitle.textContent = `${date} - Status: ${status}`;
-  detailMeta.textContent = `Tipo: ${report.tipo} | Nome: ${nome} | Contato: ${contato}`;
+  detailTitle.textContent = date;
+  detailStatus.textContent = `Status: ${status}`;
+  detailType.textContent = `Tipo: ${report.tipo || "Não informado"}`;
+  detailName.textContent = `Nome: ${nome}`;
+  detailContact.textContent = `Contato: ${contato}`;
   detailDesc.textContent = report.descricao || "Sem descrição.";
   detailProtocol.textContent = `Protocolo: ${report.protocol || "indisponível"}`;
 
