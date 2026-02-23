@@ -125,7 +125,7 @@ function renderReports(reports) {
             <span class="when">${date}</span>
             <span class="status-pill status-${statusClass}">${escapeHtml(status)}</span>
           </p>
-          <p class="meta"><strong>Tipo:</strong> ${tipo} <span class="dot">•</span> <strong>Protocolo:</strong> ${protocolo}</p>
+          <p class="meta"><strong>Tipo:</strong> ${tipo} </p>
           <p class="meta"><strong>Nome:</strong> ${name} | <strong>Contato:</strong> ${contato}</p>
           <p class="hint">Clique para ver os detalhes completos</p>
         </article>
