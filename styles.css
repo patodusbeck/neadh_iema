@@ -684,6 +684,14 @@ h2 {
   color: #fff2f2;
 }
 
+.footer-subtitle {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #f0dede;
+  letter-spacing: 0.02em;
+}
+
 .footer-info {
   justify-self: end;
   text-align: right;
