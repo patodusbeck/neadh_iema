@@ -13,6 +13,9 @@ const closeDetailButton = document.getElementById("closeDetail");
 const detailTitle = document.getElementById("detailTitle");
 const detailStatus = document.getElementById("detailStatus");
 const detailType = document.getElementById("detailType");
+const detailLocal = document.getElementById("detailLocal");
+const detailWhen = document.getElementById("detailWhen");
+const detailInvolved = document.getElementById("detailInvolved");
 const detailName = document.getElementById("detailName");
 const detailContact = document.getElementById("detailContact");
 const detailDesc = document.getElementById("detailDesc");
@@ -82,10 +85,18 @@ function openDetail(index) {
   const status = getStatusLabel(report.status);
   const nome = report.nome || "Anônimo";
   const contato = report.contato || "Não informado";
+  const local = report.local || "Não informado";
+  const envolvidos = report.envolvidos || "Não informado";
+  const quando = report.dataOcorrencia
+    ? `${report.dataOcorrencia}${report.horaOcorrencia ? ` às ${report.horaOcorrencia}` : ""}`
+    : "Não informado";
 
   detailTitle.textContent = date;
   detailStatus.textContent = `Status: ${status}`;
   detailType.textContent = `Tipo: ${report.tipo || "Não informado"}`;
+  detailLocal.textContent = `Local: ${local}`;
+  detailWhen.textContent = `Quando: ${quando}`;
+  detailInvolved.textContent = `Envolvidos: ${envolvidos}`;
   detailName.textContent = `Nome: ${nome}`;
   detailContact.textContent = `Contato: ${contato}`;
   detailDesc.textContent = report.descricao || "Sem descrição.";
@@ -117,6 +128,11 @@ function renderReports(reports) {
       const tipo = escapeHtml(report.tipo || "Não informado");
       const name = report.nome ? escapeHtml(report.nome) : "Anônimo";
       const contato = report.contato ? escapeHtml(report.contato) : "Não informado";
+      const local = report.local ? escapeHtml(report.local) : "Não informado";
+      const envolvidos = report.envolvidos ? escapeHtml(report.envolvidos) : "Não informado";
+      const quando = report.dataOcorrencia
+        ? `${escapeHtml(report.dataOcorrencia)}${report.horaOcorrencia ? ` às ${escapeHtml(report.horaOcorrencia)}` : ""}`
+        : "Não informado";
       const protocolo = escapeHtml(report.protocol || "indisponível");
 
       return `
@@ -126,6 +142,9 @@ function renderReports(reports) {
             <span class="status-pill status-${statusClass}">${escapeHtml(status)}</span>
           </p>
           <p class="meta"><strong>Tipo:</strong> ${tipo} </p>
+          <p class="meta"><strong>Local:</strong> ${local}</p>
+          <p class="meta"><strong>Quando:</strong> ${quando}</p>
+          <p class="meta"><strong>Envolvidos:</strong> ${envolvidos}</p>
           <p class="meta"><strong>Nome:</strong> ${name} | <strong>Contato:</strong> ${contato}</p>
           <p class="hint">Clique para ver os detalhes completos</p>
         </article>

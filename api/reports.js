@@ -35,13 +35,19 @@ module.exports = async function handler(req, res) {
 
     if (req.method === "POST") {
       const tipo = cleanText(req.body?.tipo, 100);
+      const local = cleanText(req.body?.local, 160);
+      const dataOcorrencia = cleanText(req.body?.data, 20);
+      const horaOcorrencia = cleanText(req.body?.hora, 20);
+      const envolvidos = cleanText(req.body?.envolvidos, 200);
       const descricao = cleanText(req.body?.descricao, 4000);
       const nome = cleanText(req.body?.nome, 140);
       const contato = cleanText(req.body?.contato, 180);
       const consentimento = Boolean(req.body?.consentimento);
 
-      if (!tipo || !descricao) {
-        return res.status(400).json({ error: "Tipo de ocorrencia e descricao sao obrigatorios." });
+      if (!tipo || !local || !dataOcorrencia || !horaOcorrencia || !envolvidos || !descricao) {
+        return res
+          .status(400)
+          .json({ error: "Tipo, local, data, hora, envolvidos e descricao sao obrigatorios." });
       }
 
       if (!consentimento) {
@@ -52,6 +58,10 @@ module.exports = async function handler(req, res) {
       await collection.insertOne({
         protocol,
         tipo,
+        local,
+        dataOcorrencia,
+        horaOcorrencia,
+        envolvidos,
         descricao,
         nome: nome || null,
         contato: contato || null,
