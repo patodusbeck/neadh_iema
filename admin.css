@@ -196,10 +196,10 @@ button:disabled {
 
 .report-card {
   position: relative;
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #fffdfb 0%, #fff7f2 100%);
+  border: 1px solid #e6d1c4;
   border-radius: 0.95rem;
-  padding: 0.95rem 1rem;
+  padding: 1.05rem 1.1rem;
   cursor: pointer;
   transition: box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease;
 }
@@ -208,7 +208,7 @@ button:disabled {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
-  width: 7px;
+  width: 6px;
   border-radius: 0.95rem 0 0 0.95rem;
   background: linear-gradient(180deg, var(--brand-500), var(--brand-700));
 }
@@ -222,7 +222,7 @@ button:disabled {
 }
 
 .row-top {
-  margin: 0 0 0.52rem;
+  margin: 0 0 0.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -266,15 +266,19 @@ button:disabled {
   margin: 0 0 0.38rem;
 }
 
+.meta strong {
+  color: var(--ink);
+}
+
 .dot {
   opacity: 0.55;
   margin: 0 0.28rem;
 }
 
 .hint {
-  margin: 0.52rem 0 0;
+  margin: 0.6rem 0 0;
   color: #7a5451;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
@@ -303,44 +307,46 @@ button:disabled {
 .detail-card {
   position: relative;
   width: min(700px, 92vw);
-  min-height: 62vh;
+  min-height: 58vh;
   max-height: 90vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   background: #fffdfa;
   border: 1px solid #dbc0b3;
-  border-radius: 1rem;
-  padding: 1.12rem;
+  border-radius: 1.1rem;
+  padding: 1.2rem 1.35rem 1.35rem;
   box-shadow: var(--shadow-strong);
 }
 
 .detail-card h2 {
   margin: 0 0 0.58rem;
   font-family: "Archivo", "Source Sans 3", sans-serif;
-  font-size: clamp(1.2rem, 2.4vw, 1.9rem);
+  font-size: clamp(1.25rem, 2.4vw, 1.95rem);
   max-width: 100%;
-  padding-right: 120px;
+  padding-right: 140px;
 }
 
 .detail-card .meta {
-  margin-bottom: 0.54rem;
+  margin-bottom: 0.5rem;
 }
 
 .detail-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem;
-  margin-bottom: 0.35rem;
+  gap: 0.55rem 0.65rem;
+  margin-bottom: 0.55rem;
 }
 
 .detail-grid .meta {
   margin: 0;
-  padding: 0.5rem 0.65rem;
-  border: 1px solid #ead4c7;
-  border-radius: 0.65rem;
-  background: #fff6f0;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #e6d1c4;
+  border-radius: 0.75rem;
+  background: #fff9f6;
   font-weight: 600;
+  font-size: 0.92rem;
+  color: #5a3c3a;
 }
 
 .detail-card .desc {
@@ -349,18 +355,23 @@ button:disabled {
   min-height: 230px;
   max-height: none;
   white-space: pre-wrap;
-  font-size: 1.03rem;
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  background: #fdf4ee;
-  border: 1px solid #edd4c7;
+  font-size: 1.02rem;
+  border-radius: 0.85rem;
+  padding: 0.9rem 1rem;
+  background: #fff7f2;
+  border: 1px solid #efd9cc;
+  color: #3b2422;
 }
 
 .close-detail {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding-inline: 1rem;
+  top: 1.1rem;
+  right: 1.1rem;
+  padding-inline: 1.05rem;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 760px) {
