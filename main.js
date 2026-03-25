@@ -94,6 +94,10 @@ if (form) {
 
     const payload = {
       tipo: form.tipo.value.trim(),
+      local: form.local.value.trim(),
+      data: form.data.value,
+      hora: form.hora.value,
+      envolvidos: form.envolvidos.value.trim(),
       descricao: form.descricao.value.trim(),
       nome: form.nome.value.trim(),
       contato: form.contato.value.trim(),

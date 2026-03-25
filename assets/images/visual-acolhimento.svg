@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img" aria-label="Ilustracao sobre acolhimento e apoio">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f9efef" />
+      <stop offset="1" stop-color="#eee0e0" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" rx="36" fill="url(#bg)" />
+  <ellipse cx="400" cy="430" rx="260" ry="42" fill="#e5cfcf" />
+  <circle cx="320" cy="220" r="46" fill="#d9a68f" />
+  <rect x="285" y="265" width="70" height="110" rx="24" fill="#5f2a3c" />
+  <circle cx="480" cy="220" r="46" fill="#b07b6a" />
+  <rect x="445" y="265" width="70" height="110" rx="24" fill="#7a2d2f" />
+  <rect x="352" y="300" width="96" height="26" rx="13" fill="#9a6a5d" />
+  <rect x="352" y="326" width="96" height="26" rx="13" fill="#9a6a5d" />
+  <path d="M380 140 Q400 110 420 140 Q400 185 380 140" fill="#7a2d2f" />
+  <rect x="160" y="90" width="180" height="60" rx="18" fill="#ffffff" stroke="#d8c8c8" />
+  <path d="M190 120 H310" stroke="#6b3438" stroke-width="6" stroke-linecap="round" />
+  <rect x="460" y="90" width="180" height="60" rx="18" fill="#ffffff" stroke="#d8c8c8" />
+  <path d="M490 120 H610" stroke="#6b3438" stroke-width="6" stroke-linecap="round" />
+</svg>

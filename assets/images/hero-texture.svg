@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-label="Textura abstrata acolhedora com punho cerrado">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7eded" />
+      <stop offset="1" stop-color="#f2e0e0" />
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3e3e3" />
+      <stop offset="1" stop-color="#ead2d2" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#g1)" />
+  <path d="M0 420 Q180 300 360 360 T720 340 T1080 360 L1200 370 L1200 700 L0 700 Z" fill="url(#g2)" />
+  <path d="M0 260 Q160 200 320 240 T640 230 T960 240 T1200 250" stroke="#d9c4c4" stroke-width="18" stroke-linecap="round" fill="none" opacity="0.5" />
+  <circle cx="200" cy="170" r="90" fill="#f0dede" />
+  <circle cx="980" cy="160" r="120" fill="#eed8d8" />
+  <circle cx="760" cy="520" r="140" fill="#f4e4e4" />
+  <circle cx="420" cy="520" r="120" fill="#f0dede" />
+  <path d="M520 150 Q600 100 680 150 Q600 220 520 150" fill="#7a2d2f" opacity="0.08" />
+  <g transform="translate(720 320) scale(1.4)" opacity="0.28" fill="#7a2d2f">
+    <rect x="-210" y="0" width="80" height="80" rx="20" />
+    <rect x="-120" y="-10" width="80" height="90" rx="20" />
+    <rect x="-30" y="-10" width="80" height="90" rx="20" />
+    <rect x="60" y="0" width="80" height="80" rx="20" />
+    <rect x="-150" y="80" width="260" height="140" rx="30" />
+    <rect x="-190" y="190" width="150" height="90" rx="24" />
+  </g>
+</svg>

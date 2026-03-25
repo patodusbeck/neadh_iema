@@ -13,7 +13,7 @@
 
   <meta property="og:locale" content="pt_BR">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="NEADH IEMA">
+  <meta property="og:site_name" content="NEADH IEMA PLENO CAROLINA">
   <meta property="og:title" content="NEADH | Conscientização e Denúncia">
   <meta property="og:description" content="Canal de conscientização e denúncia sobre bullying escolar, com foco no enfrentamento ao racismo.">
   <meta property="og:url" content="https://neadhiema.vercel.app/">
@@ -85,8 +85,8 @@
   <main id="inicio">
     <section class="hero reveal">
       <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">NEADH IEMA</p>
+        <div class="hero-content">
+          <p class="eyebrow">NEADH IEMA PLENO CAROLINA</p>
           <h1>Bullying e racismo não são brincadeira.</h1>
           <p class="lead">
             Queremos uma escola segura, inclusiva e respeitosa, com apoio a estudantes,
@@ -101,6 +101,29 @@
             registre aqui. Toda denúncia é tratada com cuidado e sigilo.
           </p>
         </aside>
+      </div>
+    </section>
+
+    <section class="section visual-section reveal" aria-label="Imagens de conscientização">
+      <div class="container">
+        <h2>Uma escola que acolhe e repreende o preconceito.</h2>
+        <p class="section-intro">
+          
+        </p>
+        <div class="visual-grid">
+          <figure class="visual-card reveal">
+            <img src="assets/images/visual-bullying.svg" alt="Ilustração sobre bullying e isolamento de estudantes." width="800" height="520" loading="lazy" decoding="async">
+            <figcaption>Bullying machuca e isola. A escola precisa agir rápido.</figcaption>
+          </figure>
+          <figure class="visual-card reveal">
+            <img src="assets/images/visual-racismo.svg" alt="Ilustração sobre diversidade e igualdade racial na escola." width="800" height="520" loading="lazy" decoding="async">
+            <figcaption>Racismo não é opinião: é violência que precisa ser enfrentada.</figcaption>
+          </figure>
+          <figure class="visual-card reveal">
+            <img src="assets/images/visual-acolhimento.svg" alt="Ilustração sobre acolhimento e apoio entre estudantes." width="800" height="520" loading="lazy" decoding="async">
+            <figcaption>Acolhimento e apoio fortalecem quem precisa de ajuda.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -265,6 +288,18 @@
 
           <fieldset class="form-step" data-step="2">
             <legend>2. Descrição</legend>
+            <label for="local">Local onde ocorreu *</label>
+            <input id="local" name="local" type="text" placeholder="Ex.: pátio, sala 3B, próximo à cantina" required>
+
+            <label for="data">Quando ocorreu *</label>
+            <input id="data" name="data" type="date" required>
+
+            <label for="hora">Hora aproximada *</label>
+            <input id="hora" name="hora" type="time" required>
+
+            <label for="envolvidos">Pessoas ou turmas envolvidas *</label>
+            <input id="envolvidos" name="envolvidos" type="text" placeholder="Ex.: turma 2A, alunos do 1º ano" required>
+
             <label for="descricao">Conte o que aconteceu *</label>
             <textarea id="descricao" name="descricao" rows="6" required placeholder="Conte o que aconteceu, onde e quando."></textarea>
             <div class="step-actions">
@@ -275,7 +310,7 @@
 
           <fieldset class="form-step" data-step="3">
             <legend>3. Contato e envio</legend>
-            <label for="nome">Nome e Turma</label>
+            <label for="nome">Nome e Turma *</label>
             <input id="nome" name="nome" type="text" placeholder="Digite seu nome e sua turma" required>
 
             <label for="contato">Contato (opcional)</label>

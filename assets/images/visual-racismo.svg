@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img" aria-label="Ilustracao sobre respeito e combate ao racismo">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8eeee" />
+      <stop offset="1" stop-color="#f2e3e3" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" rx="36" fill="url(#bg)" />
+  <circle cx="400" cy="245" r="160" fill="#f4d7d1" />
+  <circle cx="290" cy="220" r="58" fill="#b07b6a" />
+  <rect x="256" y="272" width="68" height="92" rx="22" fill="#7a2d2f" />
+  <circle cx="400" cy="200" r="64" fill="#e1b39e" />
+  <rect x="364" y="262" width="72" height="98" rx="24" fill="#6b3438" />
+  <circle cx="510" cy="220" r="58" fill="#d9a68f" />
+  <rect x="476" y="272" width="68" height="92" rx="22" fill="#5f2a3c" />
+  <circle cx="340" cy="210" r="6" fill="#3f1b1e" />
+  <circle cx="428" cy="192" r="6" fill="#3f1b1e" />
+  <circle cx="472" cy="210" r="6" fill="#3f1b1e" />
+  <path d="M380 222 Q400 238 420 222" stroke="#3f1b1e" stroke-width="4" stroke-linecap="round" />
+  <rect x="250" y="90" width="300" height="70" rx="20" fill="#ffffff" stroke="#d8c8c8" />
+  <path d="M310 125 H490" stroke="#7a2d2f" stroke-width="8" stroke-linecap="round" />
+  <path d="M310 148 H490" stroke="#7a2d2f" stroke-width="8" stroke-linecap="round" />
+  <circle cx="580" cy="350" r="70" fill="#f0dede" />
+  <path d="M560 350 Q580 320 600 350 Q580 390 560 350" fill="#7a2d2f" />
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img" aria-label="Ilustracao sobre bullying escolar">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f9f0f0" />
+      <stop offset="1" stop-color="#efe3e3" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" rx="36" fill="url(#bg)" />
+  <ellipse cx="400" cy="430" rx="280" ry="46" fill="#e6d2d2" />
+  <circle cx="180" cy="240" r="42" fill="#b07b6a" />
+  <rect x="140" y="285" width="80" height="110" rx="24" fill="#7a2d2f" />
+  <rect x="112" y="330" width="55" height="90" rx="22" fill="#9a6a5d" />
+  <rect x="213" y="330" width="55" height="90" rx="22" fill="#9a6a5d" />
+  <circle cx="540" cy="210" r="36" fill="#d9a68f" />
+  <rect x="510" y="250" width="62" height="90" rx="20" fill="#5f2a3c" />
+  <circle cx="620" cy="220" r="34" fill="#c58b72" />
+  <rect x="592" y="255" width="58" height="86" rx="20" fill="#6b3438" />
+  <circle cx="700" cy="230" r="32" fill="#e1b39e" />
+  <rect x="672" y="262" width="56" height="84" rx="18" fill="#4d2326" />
+  <rect x="520" y="110" width="140" height="56" rx="18" fill="#ffffff" stroke="#d8c8c8" />
+  <circle cx="544" cy="138" r="6" fill="#7a2d2f" />
+  <circle cx="572" cy="138" r="6" fill="#7a2d2f" />
+  <circle cx="600" cy="138" r="6" fill="#7a2d2f" />
+  <rect x="650" y="120" width="70" height="36" rx="12" fill="#ffffff" stroke="#d8c8c8" />
+  <path d="M668 132 L702 144" stroke="#7a2d2f" stroke-width="4" stroke-linecap="round" />
+  <path d="M702 132 L668 144" stroke="#7a2d2f" stroke-width="4" stroke-linecap="round" />
+  <circle cx="180" cy="230" r="6" fill="#3f1b1e" />
+  <circle cx="198" cy="230" r="6" fill="#3f1b1e" />
+  <path d="M168 258 Q180 248 192 258" stroke="#3f1b1e" stroke-width="4" stroke-linecap="round" />
+</svg>
