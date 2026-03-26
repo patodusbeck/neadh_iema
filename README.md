@@ -1,10 +1,13 @@
-﻿# NEADH IEMA
+﻿# NEADH IEMA PLENO CAROLINA
+
 Plataforma web de conscientização sobre bullying escolar (com foco no enfrentamento ao racismo), com canal de denúncia e painel administrativo para gestão dos registros.
 
 ## Objetivo do projeto
+
 Este site foi criado para apoiar estudantes, famílias e educadores no combate ao bullying e ao racismo no ambiente escolar.
 
 O projeto oferece:
+
 - Conteúdo educativo e orientações práticas.
 - Formulário de denúncia em etapas.
 - Registro real das denúncias em banco de dados.
@@ -12,19 +15,23 @@ O projeto oferece:
 - Versão instalável (PWA) do painel para uso em celular/computador.
 
 ## Visão geral da arquitetura
+
 O projeto usa uma arquitetura simples e eficaz:
+
 - Frontend estático em HTML/CSS/JS.
 - API serverless para gravação e leitura das denúncias.
 - Banco MongoDB para persistência.
 - Deploy recomendado na Vercel.
 
 Fluxo principal:
+
 1. Usuário preenche denúncia no site (`/`).
 2. `main.js` valida o formulário e envia `POST /api/reports`.
 3. API valida dados e grava no MongoDB com protocolo único.
 4. Diretor acessa `/admin` e consulta denúncias via `GET /api/reports` com chave administrativa.
 
 ## Stack utilizada
+
 - HTML5
 - CSS3
 - JavaScript (Vanilla)
@@ -37,6 +44,7 @@ Fluxo principal:
 ## Funcionalidades implementadas
 
 ## Site público (`/`)
+
 - Navegação responsiva (menu hamburguer no mobile).
 - Seções educativas sobre tipos de bullying, sinais e condutas.
 - Formulário de denúncia em 3 etapas.
@@ -45,18 +53,21 @@ Fluxo principal:
 - Imagens otimizadas com fallback (`webp` + `png`).
 
 ## Formulário de denúncia
+
 - Campos obrigatórios: tipo e descrição.
 - Campos opcionais: nome e contato.
 - Consentimento obrigatório para envio.
 - Mensagem de retorno e exibição do número de protocolo.
 
 ## Painel do diretor (`/admin`)
+
 - Acesso por chave administrativa (`ADMIN_PANEL_KEY`).
 - Listagem das denúncias mais recentes.
 - Exibição de protocolo, tipo, data, status, nome, contato e descrição.
 - Botão de atualização da lista.
 
 ## PWA do painel
+
 - Painel instalável como app (Android/desktop com prompt; iPhone via “Adicionar à Tela de Início”).
 - Arquivos:
   - `admin-manifest.webmanifest`
@@ -67,9 +78,11 @@ Fluxo principal:
 ## Endpoints da API
 
 ## `POST /api/reports`
+
 Registra nova denúncia.
 
 Payload esperado:
+
 ```json
 {
   "tipo": "Racismo",
@@ -81,6 +94,7 @@ Payload esperado:
 ```
 
 Resposta de sucesso:
+
 ```json
 {
   "ok": true,
@@ -90,12 +104,15 @@ Resposta de sucesso:
 ```
 
 ## `GET /api/reports?limit=200`
+
 Lista denúncias para o painel administrativo.
 
 Requer header:
+
 - `x-admin-key: <ADMIN_PANEL_KEY>`
 
 Resposta:
+
 ```json
 {
   "ok": true,
@@ -105,15 +122,18 @@ Resposta:
 ```
 
 ## Segurança atual
+
 - Chave de acesso no painel (`ADMIN_PANEL_KEY`).
 - Validação de campos no frontend e backend.
 - Sanitização básica de texto na API.
 - Metadados técnicos de requisição (IP e user-agent) armazenados no banco.
 
 Observação:
+
 - Para produção avançada, recomenda-se adicionar autenticação robusta (ex.: login com sessão/JWT), rate limit e auditoria de acesso no painel.
 
 ## Estrutura de pastas
+
 ```text
 .
 ├── index.html                     # Site público
@@ -140,6 +160,7 @@ Observação:
 ```
 
 ## Variáveis de ambiente
+
 Configure no Vercel (ou `.env` local):
 
 - `MONGODB_URI`: string de conexão MongoDB Atlas.
@@ -148,6 +169,7 @@ Configure no Vercel (ou `.env` local):
 - `ADMIN_PANEL_KEY`: chave de acesso do painel administrativo.
 
 Exemplo em `.env.example`:
+
 ```env
 MONGODB_URI=mongodb+srv://usuario:senha@cluster.mongodb.net/?retryWrites=true&w=majority
 MONGODB_DB=neadh_iema
@@ -156,45 +178,58 @@ ADMIN_PANEL_KEY=sua_chave_secreta_aqui
 ```
 
 ## Como executar localmente
+
 Pré-requisitos:
+
 - Node.js 18+
 - Conta MongoDB Atlas (ou instância MongoDB acessível)
 
 Passos:
+
 1. Instale dependências:
+
 ```bash
 npm install
 ```
+
 2. Crie `.env` com as variáveis necessárias.
 3. Rode localmente com sua plataforma de preferência (ex.: `vercel dev`).
 
 Observação:
+
 - Como a API está em `api/`, o fluxo local ideal é via ambiente compatível com funções serverless.
 
 ## Deploy na Vercel
+
 1. Conecte o repositório no Vercel.
 2. Configure as variáveis de ambiente.
 3. Faça deploy.
 4. Teste:
+
 - Envio de denúncia em `/`
 - Leitura no painel `/admin`
 - Instalação do PWA do painel
 
 ## Scripts úteis
+
 - `npm run optimize:images` -> gera versões WebP otimizadas.
 - `node scripts/generate-og-cover.mjs` -> recria `og-cover.png` e `og-cover.webp`.
 
 ## SEO e compartilhamento
+
 O projeto já inclui:
+
 - `canonical`
 - `Open Graph`
 - `Twitter Card`
 - `JSON-LD` (Organization)
 
 Imagem de compartilhamento:
+
 - `assets/images/og-cover.png`
 - `assets/images/og-cover.webp`
 
 ## Licença e uso institucional
-Este projeto foi construído para uso educacional e institucional do NEADH/IEMA.
+
+Este projeto foi construído para uso educacional e institucional do NEADH IEMA PLENO CAROLINA.
 Para uso em outros contextos, recomenda-se adequar textos, políticas internas e fluxos de atendimento.
