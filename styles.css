@@ -68,11 +68,11 @@ textarea {
 }
 
 .logo-neadh {
-  height: 58px;
+  height: 72px;
 }
 
 .logo-iema {
-  height: 62px;
+  height: 76px;
 }
 
 .menu {
@@ -143,7 +143,7 @@ textarea {
   position: absolute;
   inset: 0;
   background:
-    url("image.png") 20% 35% / 260px no-repeat;
+    url("/assets/images/punho.png") 20% 35% / 300px no-repeat;
   opacity: 0.1;
   pointer-events: none;
   z-index: -1;
@@ -666,14 +666,14 @@ h2 {
 }
 
 .footer-logo-neadh {
-  height: 50px;
+  height: 72px;
   width: auto;
   filter: brightness(0) invert(1);
   opacity: 0.95;
 }
 
 .footer-logo-iema {
-  height: 58px;
+  height: 76px;
   width: auto;
 }
 
@@ -797,11 +797,11 @@ h2 {
   }
 
   .logo-neadh {
-    height: 46px;
+    height: 60px;
   }
 
   .logo-iema {
-    height: 48px;
+    height: 62px;
   }
 
   h1 {
@@ -854,11 +854,11 @@ h2 {
   }
 
   .footer-logo-neadh {
-    height: 40px;
+    height: 60px;
   }
 
   .footer-logo-iema {
-    height: 46px;
+    height: 62px;
   }
 
   .footer-grid {

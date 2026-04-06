@@ -5,7 +5,7 @@ const STATIC_ASSETS = [
   "/admin.css",
   "/admin.js",
   "/admin-manifest.webmanifest",
-  "/assets/images/neadh_simbolo.png",
+  "/assets/images/ipcarolina.png",
   "/assets/icons/pwa-192.png",
   "/assets/icons/pwa-512.png"
 ];
