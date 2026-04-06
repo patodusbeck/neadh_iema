@@ -33,6 +33,55 @@ if (revealElements.length > 0) {
   revealElements.forEach((item) => observer.observe(item));
 }
 
+const preventZoom = () => {
+  document.addEventListener(
+    "dblclick",
+    (event) => {
+      event.preventDefault();
+    },
+    { passive: false }
+  );
+
+  document.addEventListener(
+    "gesturestart",
+    (event) => {
+      event.preventDefault();
+    },
+    { passive: false }
+  );
+
+  document.addEventListener(
+    "gesturechange",
+    (event) => {
+      event.preventDefault();
+    },
+    { passive: false }
+  );
+
+  document.addEventListener(
+    "gestureend",
+    (event) => {
+      event.preventDefault();
+    },
+    { passive: false }
+  );
+
+  let lastTouchEnd = 0;
+  document.addEventListener(
+    "touchend",
+    (event) => {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    },
+    { passive: false }
+  );
+};
+
+preventZoom();
+
 const form = document.getElementById("reportForm");
 const formMessage = document.getElementById("formMessage");
 const protocolBox = document.getElementById("protocolBox");
