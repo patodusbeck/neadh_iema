@@ -190,14 +190,17 @@ function downloadActiveReportPdf() {
   ];
 
   doc.setFontSize(10);
+  doc.setFont(undefined, "bold");
+  const labelWidth = Math.max(...fields.map(([label]) => doc.getTextWidth(`${label}:`))) + 5;
+  const valueWidth = contentWidth - labelWidth;
   fields.forEach(([label, value]) => {
     doc.setFont(undefined, "bold");
     doc.setTextColor(59, 30, 32);
     doc.text(`${label}:`, margin, y);
     doc.setFont(undefined, "normal");
     doc.setTextColor(58, 36, 34);
-    const lines = doc.splitTextToSize(String(value), contentWidth - 42);
-    doc.text(lines, margin + 42, y);
+    const lines = doc.splitTextToSize(String(value), valueWidth);
+    doc.text(lines, margin + labelWidth, y);
     y += Math.max(6, lines.length * 5);
   });
 
@@ -212,7 +215,11 @@ function downloadActiveReportPdf() {
   y += descriptionLines.length * 5 + 14;
   doc.setFontSize(8);
   doc.setTextColor(107, 74, 72);
-  doc.text("Documento gerado pelo Painel de Denúncias NEADH.", margin, Math.min(y, 285));
+  doc.text(
+    `Documento gerado pelo Painel de Denúncias NEADH ${formatDate(new Date())}`,
+    margin,
+    Math.min(y, 285)
+  );
 
   const safeProtocol = String(report.protocol || "sem-protocolo").replace(/[^a-z0-9-]/gi, "-");
   doc.save(`relatorio-denuncia-${safeProtocol}.pdf`);
