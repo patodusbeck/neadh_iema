@@ -2,6 +2,7 @@ const adminKeyInput = document.getElementById("adminKey");
 const loadButton = document.getElementById("loadReports");
 const refreshButton = document.getElementById("refreshReports");
 const installButton = document.getElementById("installApp");
+const enableNotificationsButton = document.getElementById("enableNotifications");
 const changeKeyButton = document.getElementById("changeKey");
 const authBox = document.getElementById("authBox");
 const authMessage = document.getElementById("authMessage");
@@ -20,10 +21,18 @@ const detailName = document.getElementById("detailName");
 const detailContact = document.getElementById("detailContact");
 const detailDesc = document.getElementById("detailDesc");
 const detailProtocol = document.getElementById("detailProtocol");
+const downloadPdfButton = document.getElementById("downloadPdf");
+const newReportsAlert = document.getElementById("newReportsAlert");
+const newReportsMessage = document.getElementById("newReportsMessage");
+const dismissNewReportsButton = document.getElementById("dismissNewReports");
 
 let adminKey = "";
 let deferredInstallPrompt = null;
 let reportsCache = [];
+let activeReport = null;
+let knownReportKeys = new Set();
+let hasLoadedReports = false;
+let pollingTimer = null;
 
 const STATUS_LABELS = {
   novo: "Novo",
@@ -71,6 +80,44 @@ function getStatusLabel(value) {
   return STATUS_LABELS[key] || "Novo";
 }
 
+function getReportKey(report) {
+  return report.protocol || `${report.createdAt}-${report.tipo}-${report.local}`;
+}
+
+function updateNotificationButton() {
+  if (!enableNotificationsButton) return;
+  if (!("Notification" in window)) {
+    enableNotificationsButton.hidden = true;
+    return;
+  }
+  enableNotificationsButton.textContent = Notification.permission === "granted"
+    ? "Notificações ativadas"
+    : "Ativar notificações";
+  enableNotificationsButton.disabled = Notification.permission === "granted";
+}
+
+function showNewReportsNotification(newReports) {
+  if (!newReports.length) return;
+  const count = newReports.length;
+  const message = count === 1
+    ? "Chegou uma nova denúncia."
+    : `Chegaram ${count} novas denúncias.`;
+
+  if (newReportsAlert && newReportsMessage) {
+    newReportsMessage.textContent = message;
+    newReportsAlert.hidden = false;
+  }
+
+  document.title = `(${count}) Painel NEADH | Denúncias`;
+  if ("Notification" in window && Notification.permission === "granted") {
+    new Notification("Nova denúncia no painel NEADH", {
+      body: message,
+      icon: "assets/icons/pwa-192.png",
+      tag: "neadh-new-report",
+    });
+  }
+}
+
 function setAuthenticated(isAuthenticated) {
   if (!authBox || !changeKeyButton) return;
   authBox.classList.toggle("is-hidden", isAuthenticated);
@@ -80,6 +127,7 @@ function setAuthenticated(isAuthenticated) {
 function openDetail(index) {
   const report = reportsCache[index];
   if (!report || !detailOverlay) return;
+  activeReport = report;
 
   const date = formatDate(report.createdAt);
   const status = getStatusLabel(report.status);
@@ -104,6 +152,70 @@ function openDetail(index) {
 
   detailOverlay.classList.remove("is-hidden");
   detailOverlay.setAttribute("aria-hidden", "false");
+}
+
+function downloadActiveReportPdf() {
+  if (!activeReport) return;
+  if (!window.jspdf?.jsPDF) {
+    authMessage.textContent = "Não foi possível carregar o gerador de PDF. Verifique sua conexão e tente novamente.";
+    return;
+  }
+
+  const report = activeReport;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
+  const margin = 18;
+  const contentWidth = 210 - margin * 2;
+  let y = 22;
+
+  doc.setTextColor(94, 35, 38);
+  doc.setFontSize(18);
+  doc.setFont(undefined, "bold");
+  doc.text("Relatório de denúncia", margin, y);
+  y += 10;
+  doc.setDrawColor(154, 59, 66);
+  doc.line(margin, y, 210 - margin, y);
+  y += 10;
+
+  const fields = [
+    ["Protocolo", report.protocol || "Indisponível"],
+    ["Registrada em", formatDate(report.createdAt)],
+    ["Status", getStatusLabel(report.status)],
+    ["Tipo", report.tipo || "Não informado"],
+    ["Local", report.local || "Não informado"],
+    ["Data e hora da ocorrência", report.dataOcorrencia ? `${report.dataOcorrencia}${report.horaOcorrencia ? ` às ${report.horaOcorrencia}` : ""}` : "Não informado"],
+    ["Envolvidos", report.envolvidos || "Não informado"],
+    ["Nome", report.nome || "Anônimo"],
+    ["Contato", report.contato || "Não informado"],
+  ];
+
+  doc.setFontSize(10);
+  fields.forEach(([label, value]) => {
+    doc.setFont(undefined, "bold");
+    doc.setTextColor(59, 30, 32);
+    doc.text(`${label}:`, margin, y);
+    doc.setFont(undefined, "normal");
+    doc.setTextColor(58, 36, 34);
+    const lines = doc.splitTextToSize(String(value), contentWidth - 42);
+    doc.text(lines, margin + 42, y);
+    y += Math.max(6, lines.length * 5);
+  });
+
+  y += 4;
+  doc.setFont(undefined, "bold");
+  doc.setTextColor(59, 30, 32);
+  doc.text("Descrição dos fatos", margin, y);
+  y += 7;
+  doc.setFont(undefined, "normal");
+  const descriptionLines = doc.splitTextToSize(report.descricao || "Sem descrição.", contentWidth);
+  doc.text(descriptionLines, margin, y);
+  y += descriptionLines.length * 5 + 14;
+  doc.setFontSize(8);
+  doc.setTextColor(107, 74, 72);
+  doc.text("Documento gerado pelo Painel de Denúncias NEADH.", margin, Math.min(y, 285));
+
+  const safeProtocol = String(report.protocol || "sem-protocolo").replace(/[^a-z0-9-]/gi, "-");
+  doc.save(`relatorio-denuncia-${safeProtocol}.pdf`);
 }
 
 function closeDetail() {
@@ -153,13 +265,13 @@ function renderReports(reports) {
     .join("");
 }
 
-async function fetchReports() {
+async function fetchReports({ silent = false } = {}) {
   if (!adminKey) {
     authMessage.textContent = "Informe a chave de acesso.";
     return;
   }
 
-  authMessage.textContent = "Carregando denúncias...";
+  if (!silent) authMessage.textContent = "Carregando denúncias...";
   loadButton.disabled = true;
   refreshButton.disabled = true;
 
@@ -174,11 +286,18 @@ async function fetchReports() {
       throw new Error(data?.error || `Falha ao carregar denúncias (HTTP ${response.status}).`);
     }
 
-    authMessage.textContent = "Painel carregado com sucesso.";
+    const incomingReports = hasLoadedReports
+      ? data.reports.filter((report) => !knownReportKeys.has(getReportKey(report)))
+      : [];
+    knownReportKeys = new Set(data.reports.map(getReportKey));
+    hasLoadedReports = true;
+    if (incomingReports.length) showNewReportsNotification(incomingReports);
+    if (!silent) authMessage.textContent = "Painel carregado com sucesso.";
     summary.textContent = `Total exibido: ${data.total}`;
     renderReports(data.reports);
     refreshButton.disabled = false;
     setAuthenticated(true);
+    startPolling();
   } catch (error) {
     authMessage.textContent = error.message;
     summary.textContent = "";
@@ -189,6 +308,11 @@ async function fetchReports() {
   }
 }
 
+function startPolling() {
+  if (pollingTimer) return;
+  pollingTimer = window.setInterval(() => fetchReports({ silent: true }), 30000);
+}
+
 loadButton.addEventListener("click", () => {
   adminKey = adminKeyInput.value.trim();
   window.localStorage.setItem("admin_panel_key", adminKey);
@@ -196,6 +320,22 @@ loadButton.addEventListener("click", () => {
 });
 
 refreshButton.addEventListener("click", fetchReports);
+
+if (enableNotificationsButton) {
+  enableNotificationsButton.addEventListener("click", async () => {
+    if (!("Notification" in window)) return;
+    await Notification.requestPermission();
+    updateNotificationButton();
+  });
+  updateNotificationButton();
+}
+
+if (dismissNewReportsButton) {
+  dismissNewReportsButton.addEventListener("click", () => {
+    newReportsAlert.hidden = true;
+    document.title = "Painel NEADH | Denúncias";
+  });
+}
 
 if (changeKeyButton) {
   changeKeyButton.addEventListener("click", () => {
@@ -223,6 +363,10 @@ if (reportsList) {
 
 if (closeDetailButton) {
   closeDetailButton.addEventListener("click", closeDetail);
+}
+
+if (downloadPdfButton) {
+  downloadPdfButton.addEventListener("click", downloadActiveReportPdf);
 }
 
 if (detailOverlay) {

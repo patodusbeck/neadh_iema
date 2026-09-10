@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 </head>
 <body>
   <main class="panel">
@@ -38,17 +39,26 @@
 
     <section class="toolbar">
       <button id="installApp" hidden>Instalar app</button>
+      <button id="enableNotifications" type="button">Ativar notificações</button>
       <button id="refreshReports" disabled>Atualizar lista</button>
       <button id="changeKey" hidden>Sair</button>
       <p id="summary"></p>
     </section>
+
+    <div id="newReportsAlert" class="notification-banner" role="alert" hidden>
+      <span id="newReportsMessage"></span>
+      <button id="dismissNewReports" type="button">Dispensar</button>
+    </div>
 
     <section id="reportsList" class="reports-list"></section>
   </main>
 
   <section id="detailOverlay" class="detail-overlay is-hidden" aria-hidden="true">
     <article class="detail-card" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
-      <button id="closeDetail" class="close-detail" type="button" aria-label="Fechar detalhe">Fechar</button>
+      <div class="detail-actions">
+        <button id="closeDetail" class="close-detail" type="button" aria-label="Fechar detalhe">Fechar</button>
+        <button id="downloadPdf" class="detail-pdf" type="button">Baixar PDF</button>
+      </div>
       <h2 id="detailTitle"></h2>
       <div class="detail-grid" aria-label="Informações da denúncia">
         <p id="detailStatus" class="meta"></p>

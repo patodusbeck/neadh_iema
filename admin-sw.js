@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = "neadh-admin-v3";
+﻿const CACHE_NAME = "neadh-admin-v5";
 const STATIC_ASSETS = [
   "/admin",
   "/admin.html",

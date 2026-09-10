@@ -189,6 +189,31 @@ button:disabled {
   background: #fbf0e9;
 }
 
+.notification-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.85rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #d79c55;
+  border-radius: 0.85rem;
+  background: #fff4df;
+  color: #70440d;
+  font-weight: 700;
+  box-shadow: var(--shadow-soft);
+}
+
+.notification-banner[hidden] {
+  display: none;
+}
+
+.notification-banner button {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.7rem;
+  background: #8e6128;
+}
+
 .reports-list {
   display: grid;
   gap: 0.85rem;
@@ -367,10 +392,6 @@ button:disabled {
 }
 
 .close-detail {
-  position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
-  padding-inline: 1.1rem;
   height: 42px;
   display: inline-flex;
   align-items: center;
@@ -378,6 +399,17 @@ button:disabled {
   border-radius: 999px;
   background: #5b2326;
   box-shadow: 0 10px 20px rgba(58, 18, 20, 0.22);
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.detail-pdf {
+  background: linear-gradient(135deg, #2f6f4f, #24583e);
 }
 
 @media (max-width: 760px) {
@@ -425,6 +457,14 @@ button:disabled {
     margin-top: 0.1rem;
     font-size: 1.18rem;
     padding-right: 0;
+  }
+
+  .detail-actions {
+    flex-direction: column;
+  }
+
+  .detail-actions button {
+    width: 100%;
   }
 
   .detail-grid {

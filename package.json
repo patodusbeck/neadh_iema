@@ -4,7 +4,8 @@
   "private": true,
   "description": "Plataforma NEADH IEMA PLENO CAROLINA com conscientização e denúncia escolar.",
   "scripts": {
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "generate:pwa-icons": "node scripts/generate-pwa-icons.mjs"
   },
   "dependencies": {
     "mongodb": "^6.16.0"
