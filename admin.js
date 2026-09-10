@@ -84,12 +84,27 @@ function getReportKey(report) {
   return report.protocol || `${report.createdAt}-${report.tipo}-${report.local}`;
 }
 
+function isIosDevice() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+
+function isStandalonePwa() {
+  return window.matchMedia?.("(display-mode: standalone)").matches || navigator.standalone === true;
+}
+
 function updateNotificationButton() {
   if (!enableNotificationsButton) return;
   if (!("Notification" in window)) {
-    enableNotificationsButton.hidden = true;
+    enableNotificationsButton.hidden = false;
+    enableNotificationsButton.disabled = false;
+    enableNotificationsButton.textContent = isIosDevice() && !isStandalonePwa()
+      ? "Como ativar no iPhone"
+      : "Notificações indisponíveis";
+    enableNotificationsButton.title = "No iPhone, instale o painel na Tela de Início para ativar notificações.";
     return;
   }
+  enableNotificationsButton.hidden = false;
   enableNotificationsButton.textContent = Notification.permission === "granted"
     ? "Notificações ativadas"
     : "Ativar notificações";
@@ -152,9 +167,22 @@ function openDetail(index) {
 
   detailOverlay.classList.remove("is-hidden");
   detailOverlay.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
 }
 
-function downloadActiveReportPdf() {
+async function loadImageDataUrl(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Não foi possível carregar a logo institucional.");
+  const blob = await response.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error("Não foi possível preparar a logo institucional."));
+    reader.readAsDataURL(blob);
+  });
+}
+
+async function downloadActiveReportPdf() {
   if (!activeReport) return;
   if (!window.jspdf?.jsPDF) {
     authMessage.textContent = "Não foi possível carregar o gerador de PDF. Verifique sua conexão e tente novamente.";
@@ -168,11 +196,24 @@ function downloadActiveReportPdf() {
   const contentWidth = 210 - margin * 2;
   let y = 22;
 
+  try {
+    const logoDataUrl = await loadImageDataUrl("assets/images/ipcarolina.png");
+    doc.addImage(logoDataUrl, "PNG", margin, 10, 27, 27, undefined, "FAST");
+  } catch (error) {
+    console.warn("Logo institucional não adicionada ao PDF:", error);
+  }
+
   doc.setTextColor(94, 35, 38);
+  doc.setFontSize(12);
+  doc.setFont(undefined, "bold");
+  doc.text("IEMA PLENO CAROLINA", margin + 34, 16);
+  doc.setFontSize(9);
+  doc.setFont(undefined, "normal");
+  doc.text("Núcleo de Educação Antirracista e em Direitos Humanos (NEADH)", margin + 34, 22);
   doc.setFontSize(18);
   doc.setFont(undefined, "bold");
-  doc.text("Relatório de denúncia", margin, y);
-  y += 10;
+  doc.text("Relatório de denúncia", margin, y + 25);
+  y += 35;
   doc.setDrawColor(154, 59, 66);
   doc.line(margin, y, 210 - margin, y);
   y += 10;
@@ -229,6 +270,7 @@ function closeDetail() {
   if (!detailOverlay) return;
   detailOverlay.classList.add("is-hidden");
   detailOverlay.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
 }
 
 function renderReports(reports) {
@@ -330,7 +372,12 @@ refreshButton.addEventListener("click", fetchReports);
 
 if (enableNotificationsButton) {
   enableNotificationsButton.addEventListener("click", async () => {
-    if (!("Notification" in window)) return;
+    if (!("Notification" in window)) {
+      authMessage.textContent = isIosDevice() && !isStandalonePwa()
+        ? "No iPhone: toque em Compartilhar, escolha 'Adicionar à Tela de Início' e abra o painel pelo novo ícone para ativar as notificações."
+        : "As notificações não estão disponíveis neste navegador."
+      return;
+    }
     await Notification.requestPermission();
     updateNotificationButton();
   });
